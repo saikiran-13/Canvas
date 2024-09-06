@@ -1,13 +1,12 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
 
-import RectangleBox from './Shapes';
+import RectangleBox from "./Shapes";
 
 function App() {
   return (
     <div className="App ">
-     {/* <Canvas/> */}
-        <RectangleBox/>
+      {/* <Canvas/> */}
+      <RectangleBox />
     </div>
   );
 }
