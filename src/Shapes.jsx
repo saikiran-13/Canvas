@@ -94,7 +94,7 @@ const RectangleBox = () => {
             className="bg-black text-white px-5 py-2 rounded-sm font-bold tracking-wider"
             onClick={addShape}
           >
-            Add Shape
+            Add Rectangle
           </button>
           <button
             className="bg-black text-white px-5 py-2 rounded-sm font-bold tracking-wider"
