@@ -1,8 +1,8 @@
-import React, { useState,useRef } from 'react';
+import React, { useState, useRef } from 'react';
 
-const Rectangle = ({ id, left, top, width, height,color, onRectangleDrag }) => {
+const Rectangle = ({ id, left, top, width, height, color, onRectangleDrag }) => {
   const [isDragging, setIsDragging] = useState(false);
-  
+
 
   const handleMouseDown = (e) => {
     e.preventDefault();
@@ -17,7 +17,7 @@ const Rectangle = ({ id, left, top, width, height,color, onRectangleDrag }) => {
     const newTop = Math.max(0, Math.min(containerRect.height - height, top + e.movementY));
 
     onRectangleDrag(id, newLeft, newTop);
-   
+
   };
 
   const handleMouseUp = () => {
@@ -39,7 +39,7 @@ const Rectangle = ({ id, left, top, width, height,color, onRectangleDrag }) => {
       onMouseMove={handleMouseMove}
       onMouseUp={handleMouseUp}
     >
-    
+
     </div>
   );
 };
@@ -50,8 +50,8 @@ const RectangleBox = () => {
   const generateRandomValue = (max) => Math.floor(Math.random() * max);
 
   const addShape = () => {
-    const maxWidth = 1000; 
-    const maxHeight = 500; 
+    const maxWidth = 1000;
+    const maxHeight = 500;
 
     const newRectangleWidth = generateRandomValue(maxWidth);
     const newRectangleHeight = generateRandomValue(maxHeight);
@@ -61,9 +61,10 @@ const RectangleBox = () => {
       id: `rectangle-${rectangles.length}`,
       left: generateRandomValue(maxWidth - newRectangleWidth),
       top: generateRandomValue(maxHeight - newRectangleHeight),
-      width: Math.floor(Math.random()*newRectangleWidth),
-      height: Math.floor(Math.random()*newRectangleHeight),
-      color:"#" + Math.floor(Math.random() * 16777215).toString(16)    };
+      width: Math.floor(Math.random() * newRectangleWidth),
+      height: Math.floor(Math.random() * newRectangleHeight),
+      color: "#" + Math.floor(Math.random() * 16777215).toString(16)
+    };
 
     setRectangles([...rectangles, newRectangle]);
   };
@@ -78,53 +79,53 @@ const RectangleBox = () => {
   };
 
   const printJson = () => {
-    
+
     displayRef.current.style.display = "flex"
- 
+
   };
 
 
   return (
     <div>
-    <div style={{backgroundColor:"dodgerblue",display:"flex",justifyContent:"center",alignItems:"center"}}>
-      <header style={{background:"dodgerblue",display:"flex",gap:"30px",justifyContent:"space-evenly",marginTop:"40px"}}>
-        <button
+      <div style={{ backgroundColor: "dodgerblue", display: "flex", justifyContent: "center", alignItems: "center" }}>
+        <header style={{ background: "dodgerblue", display: "flex", gap: "30px", justifyContent: "space-evenly", marginTop: "40px" }}>
+          <button
 
-          className="bg-black text-white px-5 py-2 rounded-sm font-bold tracking-wider"
-          onClick={addShape}
-        >
-          Add Shape
-        </button>
-        <button
-          className="bg-black text-white px-5 py-2 rounded-sm font-bold tracking-wider"
-          onClick={printJson}
-        >
-          Print JSON
-        </button>
-      </header>
-    </div>
-    <div
-      style={{ width: "1000px", height: "500px" }}
-      className="relative m-auto mt-10 bg-white border border-black"
-    >
-    {rectangles.map((rectangle) => (
-      <Rectangle
-        key={rectangle.id}
-        onRectangleDrag={handleRectangleDrag}
-        {...rectangle}
-      />
-    ))}
+            className="bg-black text-white px-5 py-2 rounded-sm font-bold tracking-wider"
+            onClick={addShape}
+          >
+            Add Shape
+          </button>
+          <button
+            className="bg-black text-white px-5 py-2 rounded-sm font-bold tracking-wider"
+            onClick={printJson}
+          >
+            Print JSON
+          </button>
+        </header>
+      </div>
+      <div
+        style={{ width: "1000px", height: "500px" }}
+        className="relative m-auto mt-10 bg-[#f8f8ff] border border-[dodgerblue] mb-4 shadow-md shadow-slate-300 rounded-lg"
+      >
+        {rectangles.map((rectangle) => (
+          <Rectangle
+            key={rectangle.id}
+            onRectangleDrag={handleRectangleDrag}
+            {...rectangle}
+          />
+        ))}
 
-    </div>
-    <div ref={displayRef} style={{display:"none"}}>
-        <div style={{margin:"auto"}}>{rectangles.map((rectangle)=>{
-            return <div key={rectangle.id} style={{display:"flex",gap:"10px",fontWeight:"normal"}}>
-                <span>id:{rectangle.id}</span><span>top:{rectangle.top}</span><span>left:{rectangle.left}</span><span>width:{rectangle.width}</span><span>height:{rectangle.height}</span><span>backgroundColor:{rectangle.color}</span></div>
+      </div>
+      <div ref={displayRef} style={{ display: "none" }}>
+        <div style={{ margin: "auto" }}>{rectangles.map((rectangle) => {
+          return <div key={rectangle.id} style={{ display: "flex", gap: "10px" }} className='bg-slate-300 rounded-md mb-2 p-2 text-white font-bold'>
+            <span>id:{rectangle.id}</span><span>top:{rectangle.top}</span><span>left:{rectangle.left}</span><span>width:{rectangle.width}</span><span>height:{rectangle.height}</span><span>backgroundColor:{rectangle.color}</span></div>
         })}
         </div>
-    </div>
+      </div>
 
-  </div>
+    </div>
   );
 };
 
